@@ -1,6 +1,5 @@
 exports.inclueImgLink = (req, res) => {
-  var url =
-    req.protocol + "://" + req.get("host") + req.originalUrl + "/apis/archi";
+  let url = "https://" + req.get("host") + "/apis/archi";
   return res.data.files.map(file => {
     let rFile = {};
     rFile["key"] = file.id;
