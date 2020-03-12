@@ -10,7 +10,7 @@ const SCOPES = [
 const auth = new google.auth.JWT(
   process.env.client_email,
   null,
-  process.env.private_key,
+  credentials.private_key,
   SCOPES
 );
 //files(name, webViewLink)
