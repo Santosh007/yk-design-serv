@@ -19,4 +19,33 @@ exports.fields = {
   q: "mimeType='image/jpeg'"
 };
 
+exports.folders = {
+  fields: "files(name, id, description, mimeType)",
+  q: "mimeType = 'application/vnd.google-apps.folder'"
+};
+
+exports.fieldsByQueryParam = type => {
+  return type ? this.imgFilesByParentId : this.foldersByParentId;
+};
+
+exports.folderByName = name => ({
+  fields: "files(name, id, description, mimeType)",
+  q: `name = '${name}' and mimeType = 'application/vnd.google-apps.folder'`
+});
+
+exports.filesByParentId = id => ({
+  fields: "files(name, id, description, mimeType)",
+  q: `'${id}' in parents`
+});
+
+exports.foldersByParentId = id => ({
+  fields: "files(name, id, description, mimeType)",
+  q: `'${id}' in parents and mimeType = 'application/vnd.google-apps.folder'`
+});
+
+exports.imgFilesByParentId = id => ({
+  fields: "files(name, id, description, mimeType)",
+  q: `'${id}' in parents and mimeType='image/jpeg'`
+});
+
 exports.drive = google.drive({ version: "v3", auth });

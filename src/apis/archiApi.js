@@ -8,7 +8,7 @@ const archiApi = router => {
       .promiseFetchFiles(driveApi.fields, driveApi.drive)
       .then(dres => {
         //res.send(dres.data.files);
-        res.send(helpers.inclueImgLink(req, dres));
+        res.send(helpers.inclueImgLink(req, dres, "/apis/archi/"));
       })
       .catch(err => {
         throw err;
